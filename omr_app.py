@@ -109,6 +109,10 @@ class OMRApp:
 
         dialog.configure(bg=label_bg)
 
+        x_position = self.root.winfo_x() + 200
+        y_position = self.root.winfo_y() + 400
+        dialog.geometry(f"+{x_position}+{y_position}")
+
         tk.Label(dialog, text=prompt, bg=label_bg, fg=label_fg).pack(pady=20)
         entry = tk.Entry(dialog, bg=entry_bg, fg=entry_fg)
         entry.pack(pady=5)
@@ -201,8 +205,8 @@ class OMRApp:
                         for i in range(self.num_questions):
                             writer.writerow([i + 1, self.answers[i], self.myIndex[i], self.mark])
 
-                        # Write total score information
-                        writer.writerow([])  # Blank row for separation
+                       
+                        writer.writerow([])
                         writer.writerow(["Total Score", "", "", self.correct_answers_count * self.mark])
 
                     messagebox.showinfo("Export Success", f"Results exported to {save_path}")
